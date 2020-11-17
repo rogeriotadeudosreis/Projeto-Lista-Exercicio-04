@@ -6,7 +6,6 @@ estrutura e um método que, dado o nome de um site, busque o seu link
 correspondente na lista e ao mesmo tempo mova o nó que contém o nome
 buscado para o início da lista, de forma que ele possa ser encontrado mais
 rapidamente na próxima vez que for buscado.
-5. Desenhe o array lista interno da classe Lista após
  */
 package br.rogerio.model;
 
@@ -55,12 +54,12 @@ public class Lista {
     public void ordenarLista() {
         for (int i = 0; i < array.length; i++) {
             for (int j = i; j < array.length; j++) {
-                if (array[i].getNome().compareToIgnoreCase(array[j].getNome()) >=0) {
+                if (array[i].getNome().compareToIgnoreCase(array[j].getNome()) >= 0) {
                     Site temp = array[j];
                     array[j] = array[i];
                     array[i] = temp;
                 }
-                
+
             }
         }
         mostrarLista();
@@ -145,7 +144,7 @@ public class Lista {
 
     public int buscarPosicaoDoElemento(String nome) {
         for (int i = 0; i <= ultimo; i++) {
-            if (array[i].getNome() == nome) {
+            if (array[i].getNome().equalsIgnoreCase(nome)) {
                 return i;
             }
         }
@@ -200,54 +199,18 @@ public class Lista {
         return false;
     }
 
-    public void receberVetor(Site[] vetor) {
-
-        if (isFull()) {
-            System.out.println("A lista está cheia!\n");
-        }
-
-        if (vetor.length > 0) {
-            for (int i = 0; i < vetor.length; i++) {
-                if (!vetor[i].equals("null")) {
-                    inserirNoFim(vetor[i]);
-                } else {
-                    System.out.println("O vetor informado está com"
-                            + " valores nulos\nVerifique!");
-                    break;
-                }
-            }
-        }
-    }
-
-    public void imprimirListaInversa() {
-
-        if (isEmpty()) {
-            System.out.println("A lista informada está vazia!\n");
-        }
-        System.out.println("***** Lista impressa na ordem inversa ****");
-        for (int i = ultimo; i >= 0; i--) {
-            if (!array[i].equals(null)) {
-                System.out.printf("%s", array[i] + "\n");
-            } else {
-                System.out.println("A lista está vazia\nVerifique");
-                break;
-            }
-        }
-        System.out.println("");
-    }
-
     public Site getLinkDoSite(String nome) {
         int posicao = buscarPosicaoDoElemento(nome);
-        Site aux;
-        
+        Site site = getElementoNaPosicaoInformata(posicao);
+
         if (posicao == -1) {
             throw new RuntimeException("Nome informado não existe na lista!");
         }
-        aux = array[posicao];
-        array[posicao] = array[0];
-        array[0] = aux;
         
-        return array[0];
+        for (int i = posicao; i > 0; i--) {
+            array[i] = array[i - 1];
+        }
+        return array[0] = site;
 
     }
 }

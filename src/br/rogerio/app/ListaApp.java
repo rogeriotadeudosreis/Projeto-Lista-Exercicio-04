@@ -6,7 +6,6 @@ estrutura e um método que, dado o nome de um site, busque o seu link
 correspondente na lista e ao mesmo tempo mova o nó que contém o nome
 buscado para o início da lista, de forma que ele possa ser encontrado mais
 rapidamente na próxima vez que for buscado.
-5. Desenhe o array lista interno da classe Lista após
  */
 package br.rogerio.app;
 
@@ -38,16 +37,18 @@ public class ListaApp {
             lista.inserirNoInicio(site5);
             lista.mostrarLista();
 
-            System.out.println(lista.getLinkDoSite(site3.getNome()).getLink());
+            System.out.println("Retornando o link desejado: "
+                    + lista.getLinkDoSite(site2.getNome()).getLink());
+            
             System.out.println("");
             lista.mostrarLista();
-            lista.ordenarLista();
+            
 
         } catch (RuntimeException erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         }
 
-        System.out.printf("\n%s%d\n", "Número de site nesta lista: ", lista.size());
+        System.out.printf("\n%s%d\n", "Número de sites nesta lista: ", lista.size());
 
     }
 
